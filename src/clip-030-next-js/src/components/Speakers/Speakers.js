@@ -1,32 +1,17 @@
-import React from 'react';
+import React from "react";
+import withData from "./withData";
 
-const Speakers = () => {
-    const speakers = [
-        {
-            imageSrc: 'speaker-component-1124',
-            name: 'Douglas Croskford'
-        },
-        {
-            imageSrc: 'speaker-component-1530',
-            name: 'Tamara Baker'
-        },
-        {
-            imageSrc: 'speaker-component-10803',
-            name: 'Eugene Chuvyrov'
-        }
-    ];
+const Speakers = ({ speakers }) => {
+  return (
+    <div>
+      {speakers.map(({ imageSrc, name }) => {
+        return (
+          <img src={`/images/${imageSrc}.png`} alt={name} key={imageSrc}></img>
+        );
+      })}
+    </div>
+  );
+};
 
-    return (
-        <div>
-            {speakers.map(({ imageSrc, name }) => {
-                return <img
-                    src={`/images/${imageSrc}.png`}
-                    alt={name}
-                    key={imageSrc}
-                ></img>
-            })}
-        </div>
-    );
-}
-
-export default Speakers;
+const maxSpeakersToshow = 2;
+export default withData(maxSpeakersToshow)(Speakers);
